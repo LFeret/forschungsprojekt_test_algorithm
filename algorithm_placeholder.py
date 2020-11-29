@@ -20,6 +20,7 @@ def main():
     json_string = json.dumps(json_dic)
     this_file_path = os.path.dirname(os.path.abspath(__file__))
     output_file_path = os.path.join(this_file_path, 'test_results', f'{exp_id}_log.json')
+    result_file_path = os.path.join(this_file_path, 'test_results')
 
     if os.path.isfile(output_file_path):
         # delete file
@@ -27,6 +28,9 @@ def main():
 
     with open(output_file_path, 'w') as output_file:
         output_file.write(json_string)
+
+    with open(os.path.join(result_file_path, 'SUCCESS'), 'w') as result_file:
+        result_file.write('All went well!')
 
 
 def get_arguments():
