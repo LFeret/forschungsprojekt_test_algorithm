@@ -11,7 +11,7 @@ def main():
     if not exp_id:
         raise Exception('The exp_id is missing!')
 
-    sleep(10)
+    sleep(30)
 
     json_dic = {
         'result': f'{args[1]}'
