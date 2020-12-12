@@ -19,17 +19,24 @@ def main():
 
     json_string = json.dumps(json_dic)
     this_file_path = os.path.dirname(os.path.abspath(__file__))
-    output_file_path = os.path.join(this_file_path, 'test_results', f'{exp_id}_log.json')
-    result_file_path = os.path.join(this_file_path, 'test_results')
+    result_folder = os.path.join(this_file_path, 'test_results')
+    output_file_path = os.path.join(result_folder, f'{exp_id}_log.json')
+    success_file_path = os.path.join(result_folder, 'SUCCESS')
+
+    if not os.path.isdir(result_folder):
+        os.mkdir(result_folder)
 
     if os.path.isfile(output_file_path):
         # delete file
         os.remove(output_file_path)
 
+    if os.path.isfile(success_file_path):
+        os.remove(success_file_path)
+
     with open(output_file_path, 'w') as output_file:
         output_file.write(json_string)
 
-    with open(os.path.join(result_file_path, 'SUCCESS'), 'w') as result_file:
+    with open(success_file_path, 'w') as result_file:
         result_file.write('All went well!')
 
 
