@@ -52,9 +52,8 @@ def get_arguments():
     parser.add_argument('--size_hidden_layers', type=int, required=True, help='size of hidden layers' )
     parser.add_argument('--batch_size', type=int, required=True, help='duh again' )
 
-    parser.add_argument('args', nargs='*')
-
     FLAGS = parser.parse_args()
+    print(FLAGS)
     exp_id = FLAGS.exp_id
     B = FLAGS.batch_size
     LS = FLAGS.size_hidden_layers
