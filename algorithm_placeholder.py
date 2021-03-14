@@ -43,7 +43,7 @@ def main():
     if not exp_id:
         raise Exception('The exp_id is missing!')
 
-    url = 'https://www.facebook.com/favicon.ico'
+    url = 'http://filr.hs-fulda.de/ssf/s/readFile/share/287/-7665987564821315488/publicLink/MNIST.pkl.gz'
     r = requests.get(url, allow_redirects=True)
     open('MNIST.pkl.gz', 'wb').write(r.content)
 
