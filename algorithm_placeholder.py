@@ -11,8 +11,6 @@ import requests
 
 CLASSES = 10
 EPOCHS = 1
-Y = None
-T = None
 
 
 # model function, takes input matrix X = A^{(0)}
@@ -36,10 +34,36 @@ def loss(Y, T):
     return
 
 
-tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=Y, labels=T))
+# tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=Y, labels=T))
 
 
-def main():
+def get_arguments():
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '--exp_id',
+        type=int,
+        required=True,
+        help='TODO: Its not clear yet, what exactly the exp_id is.'
+    )
+
+    parser.add_argument('--learning_rate', type=float, required=True, help='duh' )
+    parser.add_argument('--size_hidden_layers', type=int, required=True, help='size of hidden layers' )
+    parser.add_argument('--batch_size', type=int, required=True, help='duh again' )
+
+    parser.add_argument('args', nargs='*')
+
+    FLAGS = parser.parse_args()
+    exp_id = FLAGS.exp_id
+    B = FLAGS.batch_size
+    LS = FLAGS.size_hidden_layers
+    EPS = FLAGS.learning_rate
+
+    return (exp_id, B, LS, EPS)
+
+
+if __name__ == '__main__':
     exp_id, B, LS, EPS = get_arguments()
 
     if not exp_id:
@@ -159,33 +183,3 @@ def main():
 
     with open(success_file_path, 'w') as result_file:
         result_file.write('All went well!')
-
-
-def get_arguments():
-
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        '--exp_id',
-        type=int,
-        required=True,
-        help='TODO: Its not clear yet, what exactly the exp_id is.'
-    )
-
-    parser.add_argument('--learning_rate', type=float, required=True, help='duh' )
-    parser.add_argument('--size_hidden_layers', type=int, required=True, help='size of hidden layers' )
-    parser.add_argument('--batch_size', type=int, required=True, help='duh again' )
-
-    parser.add_argument('args', nargs='*')
-
-    FLAGS = parser.parse_args()
-    exp_id = FLAGS.exp_id
-    B = FLAGS.batch_size
-    LS = FLAGS.size_hidden_layers
-    EPS = FLAGS.learning_rate
-
-    return (exp_id, B, LS, EPS)
-
-
-if __name__ == '__main__':
-    main()
