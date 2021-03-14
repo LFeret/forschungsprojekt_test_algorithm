@@ -65,7 +65,7 @@ def get_arguments():
 if __name__ == '__main__':
     exp_id, B, LS, EPS = get_arguments()
 
-    if exp_id is not None and exp_id <= 0:
+    if exp_id is None or exp_id < 0:
         raise Exception('The exp_id is missing!')
 
     url = 'http://filr.hs-fulda.de/ssf/s/readFile/share/287/-7665987564821315488/publicLink/MNIST.pkl.gz'
