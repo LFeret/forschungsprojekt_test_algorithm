@@ -6,6 +6,7 @@ import tensorflow as tf
 import numpy as np
 import pickle, gzip
 import argparse
+import requests
 
 
 CLASSES = 10
@@ -41,6 +42,10 @@ def main():
 
     if not exp_id:
         raise Exception('The exp_id is missing!')
+
+    url = 'https://www.facebook.com/favicon.ico'
+    r = requests.get(url, allow_redirects=True)
+    open('MNIST.pkl.gz', 'wb').write(r.content)
 
     with gzip.open("./MNIST.pkl.gz") as df:
         data = pickle.load(df)
