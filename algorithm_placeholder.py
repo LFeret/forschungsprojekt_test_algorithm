@@ -11,6 +11,8 @@ import requests
 
 CLASSES = 10
 EPOCHS = 1
+Y = None
+T = None
 
 
 # model function, takes input matrix X = A^{(0)}
