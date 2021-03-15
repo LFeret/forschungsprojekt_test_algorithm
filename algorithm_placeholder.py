@@ -31,10 +31,7 @@ def f(X):
 
 
 def loss(Y, T):
-    return
-
-
-# tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=Y, labels=T))
+    return tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=Y, labels=T))
 
 
 def get_arguments():
